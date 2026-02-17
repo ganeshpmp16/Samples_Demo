@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Forms 2.0 Demo - Complete Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #028090 0%, #00A896 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .page-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* Section Styling */
+        .demo-section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .demo-section h2 {
+            color: #028090;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #02C39A;
+            font-size: 1.8em;
+        }
+
+        .demo-section h3 {
+            color: #00A896;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .demo-section p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Form Styling */
+        .demo-form {
+            background: #F8F9FA;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #E2E8F0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #CBD5E1;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #028090;
+            box-shadow: 0 0 0 3px rgba(2, 128, 144, 0.1);
+        }
+
+        input:invalid {
+            border-color: #EF4444;
+        }
+
+        input:valid {
+            border-color: #10B981;
+        }
+
+        .form-hint {
+            font-size: 14px;
+            color: #64748B;
+            margin-top: 5px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #028090 0%, #00A896 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Code Block */
+        .code-block {
+            background-color: #1E293B;
+            color: #E0E7FF;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .code-block .tag {
+            color: #5EEAD4;
+        }
+
+        .code-block .attr {
+            color: #F472B6;
+        }
+
+        .code-block .value {
+            color: #FCD34D;
+        }
+
+        .code-block .comment {
+            color: #94A3B8;
+            font-style: italic;
+        }
+
+        /* Input Types Grid */
+        .input-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .input-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #E2E8F0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .input-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .input-card h4 {
+            color: #028090;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .input-card code {
+            background: #1E293B;
+            color: #FCD34D;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        /* Validation Examples */
+        .validation-demo {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .validation-demo h4 {
+            color: #92400E;
+            margin-bottom: 10px;
+        }
+
+        /* Progress and Meter Demos */
+        progress {
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #E2E8F0;
+            border-radius: 5px;
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(135deg, #028090 0%, #00A896 100%);
+            border-radius: 5px;
+        }
+
+        progress::-moz-progress-bar {
+            background: linear-gradient(135deg, #028090 0%, #00A896 100%);
+            border-radius: 5px;
+        }
+
+        meter {
+            width: 100%;
+            height: 30px;
+        }
+
+        .progress-container, .meter-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #F8F9FA;
+            border-radius: 8px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%);
+            border-left: 4px solid #028090;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .highlight-box h4 {
+            color: #028090;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box ul {
+            margin-left: 20px;
+        }
+
+        .highlight-box li {
+            margin: 8px 0;
+            color: #333;
+        }
+
+        /* Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background-color: #028090;
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #F8F9FA;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #028090;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background-color: #00A896;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8em;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="page-header" id="top">
+        <h1>Web Forms 2.0 - Complete Demo</h1>
+        <p>HTML5 Form Enhancements with Examples</p>
+    </div>
+
+    <div class="container">
+   <!-- Section 1: New Input Types -->
+        <div class="demo-section" id="input-types">
+            <h2>1. New HTML5 Input Types</h2>
+            
+            <p>HTML5 introduced many new input types that provide better user interfaces, built-in validation, and improved mobile keyboard support.</p>
+
+            <h3>All Input Types with Live Examples</h3>
+
+            <form class="demo-form" id="inputTypesForm">
+                <div class="input-types-grid">
+                    
+                    <!-- Email Input -->
+                    <div class="input-card">
+                        <h4>Email Input</h4>
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" 
+                               placeholder="user@example.com" required>
+                        <p class="form-hint">Validates email format automatically</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"email"</span> 
+       <span class="attr">required</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- URL Input -->
+                    <div class="input-card">
+                        <h4>URL Input</h4>
+                        <label for="website">Website:</label>
+                        <input type="url" id="website" name="website" 
+                               placeholder="https://example.com">
+                        <p class="form-hint">Validates URL format</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"url"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Tel Input -->
+                    <div class="input-card">
+                        <h4>Telephone Input</h4>
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" 
+                               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                               placeholder="123-456-7890">
+                        <p class="form-hint">Shows numeric keypad on mobile</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"tel"</span>
+       <span class="attr">pattern</span>=<span class="value">"[0-9]{3}-[0-9]{3}-[0-9]{4}"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Number Input -->
+                    <div class="input-card">
+                        <h4>Number Input</h4>
+                        <label for="quantity">Quantity (1-10):</label>
+                        <input type="number" id="quantity" name="quantity" 
+                               min="1" max="10" step="1" value="1">
+                        <p class="form-hint">Includes spinner controls</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"number"</span>
+       <span class="attr">min</span>=<span class="value">"1"</span> <span class="attr">max</span>=<span class="value">"10"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Range Input -->
+                    <div class="input-card">
+                        <h4>Range Input</h4>
+                        <label for="volume">Volume:</label>
+                        <input type="range" id="volume" name="volume" 
+                               min="0" max="100" value="50">
+                        <output for="volume" id="volumeOutput">50</output>
+                        <p class="form-hint">Slider control</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"range"</span>
+       <span class="attr">min</span>=<span class="value">"0"</span> <span class="attr">max</span>=<span class="value">"100"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Date Input -->
+                    <div class="input-card">
+                        <h4>Date Input</h4>
+                        <label for="birthdate">Birth Date:</label>
+                        <input type="date" id="birthdate" name="birthdate">
+                        <p class="form-hint">Native date picker</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"date"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Time Input -->
+                    <div class="input-card">
+                        <h4>Time Input</h4>
+                        <label for="appointment">Appointment Time:</label>
+                        <input type="time" id="appointment" name="appointment">
+                        <p class="form-hint">Time selection</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"time"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- DateTime-Local Input -->
+                    <div class="input-card">
+                        <h4>DateTime-Local Input</h4>
+                        <label for="meeting">Meeting Date & Time:</label>
+                        <input type="datetime-local" id="meeting" name="meeting">
+                        <p class="form-hint">Date and time picker</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"datetime-local"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Color Input -->
+                    <div class="input-card">
+                        <h4>Color Input</h4>
+                        <label for="favcolor">Favorite Color:</label>
+                        <input type="color" id="favcolor" name="favcolor" value="#028090">
+                        <p class="form-hint">Color picker tool</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"color"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="input-card">
+                        <h4>Search Input</h4>
+                        <label for="search">Search:</label>
+                        <input type="search" id="search" name="search" 
+                               placeholder="Enter keywords...">
+                        <p class="form-hint">Includes clear button</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"search"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Month Input -->
+                    <div class="input-card">
+                        <h4>Month Input</h4>
+                        <label for="expiry">Credit Card Expiry:</label>
+                        <input type="month" id="expiry" name="expiry">
+                        <p class="form-hint">Month and year picker</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"month"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                    <!-- Week Input -->
+                    <div class="input-card">
+                        <h4>Week Input</h4>
+                        <label for="week">Select Week:</label>
+                        <input type="week" id="week" name="week">
+                        <p class="form-hint">Week number picker</p>
+                        <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"week"</span><span class="tag">&gt;</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <div class="highlight-box">
+                <h4>✓ Benefits of HTML5 Input Types</h4>
+                <ul>
+                    <li>Better mobile experience with appropriate keyboards</li>
+                    <li>Built-in validation without JavaScript</li>
+                    <li>Improved accessibility</li>
+                    <li>Consistent user experience across browsers</li>
+                </ul>
+            </div>
+        </div>
+ <!-- Section 2: Built-in Validation -->
+        <div class="demo-section" id="validation">
+            <h2>2. Built-in Validation Attributes</h2>
+            
+            <p>HTML5 provides powerful client-side validation without requiring JavaScript.</p>
+
+            <h3>Validation Attributes Demo</h3>
+
+            <form class="demo-form" id="validationForm">
+                
+                <!-- Required -->
+                <div class="form-group">
+                    <label for="username">Username (Required):</label>
+                    <input type="text" id="username" name="username" required>
+                    <p class="form-hint">This field cannot be empty</p>
+                </div>
+
+                <!-- Pattern Validation -->
+                <div class="form-group">
+                    <label for="zipcode">ZIP Code (5 digits):</label>
+                    <input type="text" id="zipcode" name="zipcode" 
+                           pattern="[0-9]{5}" 
+                           title="Please enter a 5-digit ZIP code"
+                           placeholder="12345">
+                    <p class="form-hint">Must be exactly 5 digits</p>
+                </div>
+
+                <!-- Min/Max Length -->
+                <div class="form-group">
+                    <label for="password">Password (8-20 characters):</label>
+                    <input type="password" id="password" name="password" 
+                           minlength="8" maxlength="20" required>
+                    <p class="form-hint">Between 8 and 20 characters</p>
+                </div>
+
+                <!-- Min/Max Values -->
+                <div class="form-group">
+                    <label for="age">Age (Must be 18+):</label>
+                    <input type="number" id="age" name="age" 
+                           min="18" max="120" required>
+                    <p class="form-hint">Must be at least 18</p>
+                </div>
+
+                <!-- Multiple (for emails) -->
+                <div class="form-group">
+                    <label for="emails">Multiple Email Addresses:</label>
+                    <input type="email" id="emails" name="emails" multiple
+                           placeholder="email1@example.com, email2@example.com">
+                    <p class="form-hint">Separate multiple emails with commas</p>
+                </div>
+
+                <button type="submit">Validate Form</button>
+            </form>
+
+            <h3>Code Examples:</h3>
+            <div class="code-block">
+<span class="comment">&lt;!-- Required Attribute --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Pattern Validation (Regular Expression) --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> 
+       <span class="attr">pattern</span>=<span class="value">"[0-9]{5}"</span> 
+       <span class="attr">title</span>=<span class="value">"Please enter a 5-digit ZIP code"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Min/Max Length --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"password"</span> 
+       <span class="attr">minlength</span>=<span class="value">"8"</span> 
+       <span class="attr">maxlength</span>=<span class="value">"20"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Min/Max Values --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"number"</span> 
+       <span class="attr">min</span>=<span class="value">"18"</span> 
+       <span class="attr">max</span>=<span class="value">"120"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Multiple Values --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"email"</span> <span class="attr">multiple</span><span class="tag">&gt;</span>
+            </div>
+
+            <h3>Custom Validation with JavaScript</h3>
+            <div class="validation-demo">
+                <h4>Password Confirmation Example</h4>
+                <form id="customValidationForm" class="demo-form">
+                    <div class="form-group">
+                        <label for="newPassword">New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" 
+                               minlength="8" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" 
+                               minlength="8" required>
+                        <p class="form-hint" id="passwordMatch"></p>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="code-block">
+<span class="comment">// Custom Validation with JavaScript</span>
+<span class="tag">&lt;script&gt;</span>
+  const password = document.getElementById('newPassword');
+  const confirmPassword = document.getElementById('confirmPassword');
+  
+  confirmPassword.addEventListener('input', function() {
+    if (password.value !== confirmPassword.value) {
+      confirmPassword.setCustomValidity('Passwords do not match');
+    } else {
+      confirmPassword.setCustomValidity('');
+    }
+  });
+<span class="tag">&lt;/script&gt;</span>
+            </div>
+        </div>
+html
+       <!-- Section 3: Improved Input Controls -->
+        <div class="demo-section" id="controls">
+            <h2>3. Improved User Input Controls</h2>
+            
+            <h3>Placeholder Text</h3>
+            <form class="demo-form">
+                <div class="form-group">
+                    <label for="searchInput">Search Products:</label>
+                    <input type="search" id="searchInput" name="search" 
+                           placeholder="Search products...">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailInput">Email:</label>
+                    <input type="email" id="emailInput" name="email" 
+                           placeholder="your.email@example.com">
+                </div>
+            </form>
+
+            <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">placeholder</span>=<span class="value">"Enter text here..."</span><span class="tag">&gt;</span>
+            </div>
+
+            <h3>Autofocus</h3>
+            <form class="demo-form">
+                <div class="form-group">
+                    <label for="focusInput">This field gets focus on page load:</label>
+                    <input type="text" id="focusInput" name="focus" 
+                           placeholder="I have autofocus">
+                </div>
+            </form>
+
+            <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">autofocus</span><span class="tag">&gt;</span>
+            </div>
+
+            <h3>Autocomplete</h3>
+            <form class="demo-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" 
+                               autocomplete="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailAuto">Email:</label>
+                        <input type="email" id="emailAuto" name="email" 
+                               autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="street">Street Address:</label>
+                        <input type="text" id="street" name="street" 
+                               autocomplete="street-address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <input type="text" id="country" name="country" 
+                               autocomplete="country-name">
+                    </div>
+                </div>
+            </form>
+
+            <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">autocomplete</span>=<span class="value">"name"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"email"</span> <span class="attr">autocomplete</span>=<span class="value">"email"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">autocomplete</span>=<span class="value">"street-address"</span><span class="tag">&gt;</span>
+            </div>
+
+            <h3>Multiple File Selection</h3>
+            <form class="demo-form">
+                <div class="form-group">
+                    <label for="photos">Upload Multiple Photos:</label>
+                    <input type="file" id="photos" name="photos" 
+                           multiple accept="image/*">
+                    <p class="form-hint">Select multiple images at once</p>
+                </div>
+            </form>
+
+            <div class="code-block">
+<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"file"</span> <span class="attr">multiple</span> <span class="attr">accept</span>=<span class="value">"image/*"</span><span class="tag">&gt;</span>
+            </div>
+        </div>
+ <!-- Section 4: Datalist Element -->
+        <div class="demo-section" id="datalist">
+            <h2>4. The &lt;datalist&gt; Element</h2>
+            
+            <p>The datalist element provides autocomplete suggestions for input fields.</p>
+
+            <h3>Live Example: Browser Selection</h3>
+            <form class="demo-form">
+                <div class="form-group">
+                    <label for="browser">Choose your browser:</label>
+                    <input list="browsers" id="browser" name="browser" 
+                           placeholder="Start typing...">
+                    <datalist id="browsers">
+                        <option value="Chrome">
+                        <option value="Firefox">
+                        <option value="Safari">
+                        <option value="Edge">
+                        <option value="Opera">
+                        <option value="Brave">
+                    </datalist>
+                    <p class="form-hint">Type to see suggestions or select from the dropdown</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="countryInput">Select Country:</label>
+                    <input type="text" list="countries" id="countryInput" name="country" 
+                           placeholder="Start typing...">
+                    <datalist id="countries">
+                        <option value="United States" label="USA">
+                        <option value="United Kingdom" label="UK">
+                        <option value="Canada" label="CA">
+                        <option value="Australia" label="AU">
+                        <option value="Germany" label="DE">
+                        <option value="France" label="FR">
+                        <option value="Japan" label="JP">
+                        <option value="India" label="IN">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="color">Select Color:</label>
+                    <input type="text" list="colors" id="color" name="color">
+                    <datalist id="colors">
+                        <option value="Red">
+                        <option value="Blue">
+                        <option value="Green">
+                        <option value="Yellow">
+                        <option value="Purple">
+                        <option value="Orange">
+                    </datalist>
+                </div>
+            </form>
+
+            <h3>HTML Code:</h3>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"browser"</span><span class="tag">&gt;</span>Choose your browser:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">list</span>=<span class="value">"browsers"</span> <span class="attr">id</span>=<span class="value">"browser"</span> <span class="attr">name</span>=<span class="value">"browser"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;datalist</span> <span class="attr">id</span>=<span class="value">"browsers"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"Chrome"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"Firefox"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"Safari"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"Edge"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"Opera"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/datalist&gt;</span>
+            </div>
+
+            <div class="highlight-box">
+                <h4>✓ Datalist Features</h4>
+                <ul>
+                    <li>Users can type custom values or select from suggestions</li>
+                    <li>Suggestions appear as the user types</li>
+                    <li>No JavaScript required for basic functionality</li>
+                    <li>Works with various input types</li>
+                </ul>
+            </div>
+        </div>
+<!-- Section 5: Progress Element -->
+        <div class="demo-section" id="progress">
+            <h2>5. The &lt;progress&gt; Element</h2>
+            
+            <p>The progress element displays task completion progress.</p>
+
+            <h3>Live Examples</h3>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Upload Progress:</span>
+                    <span id="progressPercent">45%</span>
+                </div>
+                <progress id="fileProgress" value="45" max="100">45%</progress>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Download Progress:</span>
+                    <span id="downloadPercent">75%</span>
+                </div>
+                <progress id="downloadProgress" value="75" max="100">75%</progress>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Processing (Indeterminate):</span>
+                </div>
+                <progress id="processingProgress"></progress>
+                <p class="form-hint">No value attribute = indeterminate state</p>
+            </div>
+
+            <button onclick="simulateProgress()">Simulate Progress</button>
+
+            <h3>HTML Code:</h3>
+            <div class="code-block">
+<span class="comment">&lt;!-- Determinate Progress --&gt;</span>
+<span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"fileProgress"</span><span class="tag">&gt;</span>Upload Progress:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;progress</span> <span class="attr">id</span>=<span class="value">"fileProgress"</span> <span class="attr">value</span>=<span class="value">"45"</span> <span class="attr">max</span>=<span class="value">"100"</span><span class="tag">&gt;</span>45%<span class="tag">&lt;/progress&gt;</span>
+
+<span class="comment">&lt;!-- Indeterminate Progress (no value) --&gt;</span>
+<span class="tag">&lt;label&gt;</span>Processing...<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;progress&gt;&lt;/progress&gt;</span>
+            </div>
+
+            <h3>JavaScript Example (Dynamic Update):</h3>
+            <div class="code-block">
+<span class="comment">// Simulating file upload progress</span>
+let progress = 0;
+const progressBar = document.getElementById('fileProgress');
+
+const interval = setInterval(() => {
+  progress += 5;
+  progressBar.value = progress;
+  
+  if (progress >= 100) {
+    clearInterval(interval);
+  }
+}, 200);
+            </div>
+        </div>
+<!-- Section 6: Meter Element -->
+        <div class="demo-section" id="meter">
+            <h2>6. The &lt;meter&gt; Element</h2>
+            
+            <p>The meter element represents a scalar measurement within a known range.</p>
+
+            <h3>Live Examples</h3>
+
+            <div class="meter-container">
+                <div class="progress-label">
+                    <span>Disk Usage:</span>
+                    <span>75 GB / 100 GB</span>
+                </div>
+                <meter id="diskSpace" value="75" min="0" max="100" 
+                       low="40" high="80" optimum="20">75%</meter>
+                <p class="form-hint">Yellow/Orange (high usage)</p>
+            </div>
+
+            <div class="meter-container">
+                <div class="progress-label">
+                    <span>Battery Level:</span>
+                    <span>65%</span>
+                </div>
+                <meter id="battery" value="65" min="0" max="100" 
+                       low="20" high="80" optimum="100">65%</meter>
+                <p class="form-hint">Green (good level)</p>
+            </div>
+
+            <div class="meter-container">
+                <div class="progress-label">
+                    <span>Test Score:</span>
+                    <span>85 / 100</span>
+                </div>
+                <meter id="score" value="85" min="0" max="100" 
+                       low="60" high="90" optimum="100">85 out of 100</meter>
+                <p class="form-hint">Green (good score)</p>
+            </div>
+
+            <div class="meter-container">
+                <div class="progress-label">
+                    <span>Low Battery Warning:</span>
+                    <span>15%</span>
+                </div>
+                <meter id="lowBattery" value="15" min="0" max="100" 
+                       low="20" high="80" optimum="100">15%</meter>
+                <p class="form-hint">Red (critically low)</p>
+            </div>
+
+            <h3>HTML Code:</h3>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"diskSpace"</span><span class="tag">&gt;</span>Disk Usage:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;meter</span> <span class="attr">id</span>=<span class="value">"diskSpace"</span> 
+       <span class="attr">value</span>=<span class="value">"75"</span> 
+       <span class="attr">min</span>=<span class="value">"0"</span> 
+       <span class="attr">max</span>=<span class="value">"100"</span>
+       <span class="attr">low</span>=<span class="value">"40"</span> 
+       <span class="attr">high</span>=<span class="value">"80"</span> 
+       <span class="attr">optimum</span>=<span class="value">"20"</span><span class="tag">&gt;</span>75%<span class="tag">&lt;/meter&gt;</span>
+            </div>
+
+            <h3>Meter Attributes Explained:</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>value</strong></td>
+                        <td>Current measurement</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td><strong>min</strong></td>
+                        <td>Minimum value (default: 0)</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>max</strong></td>
+                        <td>Maximum value (default: 1)</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td><strong>low</strong></td>
+                        <td>Lower bound of normal range</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <td><strong>high</strong></td>
+                        <td>Upper bound of normal range</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td><strong>optimum</strong></td>
+                        <td>Optimal value (affects color)</td>
+                        <td>20</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <h4>✓ Color Coding Logic</h4>
+                <ul>
+                    <li><strong>Green:</strong> Value is in the optimal range</li>
+                    <li><strong>Yellow/Orange:</strong> Value is suboptimal but acceptable</li>
+                    <li><strong>Red:</strong> Value is in a problematic range</li>
+                    <li>The optimum value determines which direction is "better"</li>
+                </ul>
+            </div>
+        </div>
+ <!-- Section 7: Progress vs Meter -->
+        <div class="demo-section" id="comparison">
+            <h2>7. Progress vs Meter Comparison</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>&lt;progress&gt;</th>
+                        <th>&lt;meter&gt;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Purpose</strong></td>
+                        <td>Task completion progress</td>
+                        <td>Scalar measurement within range</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Use Case</strong></td>
+                        <td>File uploads, loading indicators, installation progress</td>
+                        <td>Disk usage, battery level, test scores, ratings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Direction</strong></td>
+                        <td>Always increasing towards 100%</td>
+                        <td>Can fluctuate up or down</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Color Coding</strong></td>
+                        <td>No automatic color indicators</td>
+                        <td>Green/yellow/red based on value and ranges</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Indeterminate State</strong></td>
+                        <td>Yes (no value attribute)</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Typical Range</strong></td>
+                        <td>0 to max (usually 100)</td>
+                        <td>min to max with low/high/optimum</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>When to Use Each:</h3>
+            <div class="form-grid">
+                <div class="highlight-box">
+                    <h4>Use &lt;progress&gt; for:</h4>
+                    <ul>
+                        <li>File upload/download progress</li>
+                        <li>Installation or setup progress</li>
+                        <li>Form completion percentage</li>
+                        <li>Loading indicators</li>
+                        <li>Step-by-step wizards</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Use &lt;meter&gt; for:</h4>
+                    <ul>
+                        <li>Disk space usage</li>
+                        <li>Battery level indicators</li>
+                        <li>Test scores or grades</li>
+                        <li>Temperature readings</li>
+                        <li>Rating systems</li>
+                        <li>Capacity indicators</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  <!-- Complete Form Example -->
+        <div class="demo-section" id="complete-example">
+            <h2>8. Complete Form Example</h2>
+            
+            <p>A comprehensive form demonstrating all HTML5 form features:</p>
+
+            <form class="demo-form" id="completeForm">
+                <h3>User Registration Form</h3>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="regName">Full Name:</label>
+                        <input type="text" id="regName" name="name" 
+                               autocomplete="name" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">Email:</label>
+                        <input type="email" id="regEmail" name="email" 
+                               autocomplete="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regPhone">Phone:</label>
+                        <input type="tel" id="regPhone" name="phone" 
+                               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                               placeholder="123-456-7890">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regDOB">Date of Birth:</label>
+                        <input type="date" id="regDOB" name="dob" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regCountry">Country:</label>
+                    <input list="regCountries" id="regCountry" name="country" required>
+                    <datalist id="regCountries">
+                        <option value="United States">
+                        <option value="Canada">
+                        <option value="United Kingdom">
+                        <option value="Australia">
+                        <option value="Germany">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="regWebsite">Website (Optional):</label>
+                    <input type="url" id="regWebsite" name="website" 
+                           placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" name="password" 
+                           minlength="8" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regSkill">Skill Level (1-10):</label>
+                    <input type="range" id="regSkill" name="skill" 
+                           min="1" max="10" value="5">
+                    <output for="regSkill" id="regSkillOutput">5</output>
+                </div>
+
+                <div class="form-group">
+                    <label for="regColor">Favorite Color:</label>
+                    <input type="color" id="regColor" name="color" value="#028090">
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Form Completion:</span>
+                        <span id="formProgressPercent">0%</span>
+                    </div>
+                    <progress id="formProgress" value="0" max="100">0%</progress>
+                </div>
+
+                <button type="submit">Submit Registration</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#top" class="back-to-top">↑ Back to Top</a>
+<script>
+        // Range input output update
+        document.getElementById('volume').addEventListener('input', function() {
+            document.getElementById('volumeOutput').value = this.value;
+        });
+
+        document.getElementById('regSkill').addEventListener('input', function() {
+            document.getElementById('regSkillOutput').value = this.value;
+        });
+
+        // Password matching validation
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const passwordMatch = document.getElementById('passwordMatch');
+
+        if (confirmPassword) {
+            confirmPassword.addEventListener('input', function() {
+                if (newPassword.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('Passwords do not match');
+                    passwordMatch.textContent = '❌ Passwords do not match';
+                    passwordMatch.style.color = '#EF4444';
+                } else {
+                    confirmPassword.setCustomValidity('');
+                    passwordMatch.textContent = '✓ Passwords match';
+                    passwordMatch.style.color = '#10B981';
+                }
+            });
+        }
+
+        // Simulate progress
+        function simulateProgress() {
+            let progress = 0;
+            const progressBar = document.getElementById('fileProgress');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.value = progress;
+                progressPercent.textContent = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+
+        // Form completion progress
+        const completeForm = document.getElementById('completeForm');
+        const formProgress = document.getElementById('formProgress');
+        const formProgressPercent = document.getElementById('formProgressPercent');
+        
+        if (completeForm) {
+            const requiredInputs = completeForm.querySelectorAll('input[required]');
+            
+            completeForm.addEventListener('input', function() {
+                let filledCount = 0;
+                requiredInputs.forEach(input => {
+                    if (input.value && input.checkValidity()) filledCount++;
+                });
+                
+                const percentage = Math.round((filledCount / requiredInputs.length) * 100);
+                formProgress.value = percentage;
+                formProgressPercent.textContent = percentage + '%';
+            });
+        }
+
+        // Form submission handlers (prevent actual submission)
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form submitted successfully! (Demo mode - not actually submitted)');
+            });
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

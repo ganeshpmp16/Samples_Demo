@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dropdown Navigation Menu - Corrected</title>
+
+    <style>
+        /* ===============================
+           BASE RESET
+        =============================== */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        /* ===============================
+           NAVIGATION BAR
+        =============================== */
+        .dropdown-nav {
+            background-color: #2c3e50;
+            position: relative;
+        }
+
+        .dropdown-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .dropdown-nav ul li {
+            position: relative;
+        }
+
+        .dropdown-nav > ul > li {
+            padding: 15px 20px;
+        }
+
+        .dropdown-nav > ul > li:hover {
+            background-color: #34495e;
+        }
+
+        /* ===============================
+           DROPDOWN MENU
+        =============================== */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #34495e;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            padding: 12px 16px;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #3e5871;
+        }
+
+        /* ===============================
+           SHOW DROPDOWN ON HOVER
+        =============================== */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* ===============================
+           PAGE CONTENT FIX
+        =============================== */
+        .content {
+            padding: 30px;
+            margin-top: 60px; /* Prevents content hiding */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===============================
+         NAVIGATION MENU
+    =============================== -->
+    <nav class="dropdown-nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+
+            <li class="dropdown">
+                <a href="#">Products</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li><a href="#">Books</a></li>
+                    <li><a href="#">Toys</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Development</a></li>
+                    <li><a href="#">Consulting</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===============================
+         PAGE CONTENT
+    =============================== -->
+    <div class="content">
+        <h1>Dropdown Navigation Menu</h1>
+        <p>
+            Hover over <strong>Products</strong> or <strong>Services</strong>
+            to see the dropdown navigation in action.
+        </p>
+
+        <p>
+            This implementation avoids content overlap and click errors.
+        </p>
+    </div>
+
+</body>
+</html>

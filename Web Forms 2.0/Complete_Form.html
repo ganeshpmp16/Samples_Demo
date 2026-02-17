@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Registration Form</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+    }
+
+    h2 {
+        color: #009688;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+
+    .field {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+        font-size: 14px;
+    }
+
+    input:required:invalid {
+        border-color: red;
+    }
+
+    input:required:valid {
+        border-color: #00b894;
+    }
+
+    input[type="range"] {
+        padding: 0;
+    }
+
+    .progress-box {
+        margin-top: 10px;
+    }
+
+    progress {
+        width: 100%;
+        height: 18px;
+    }
+
+    button {
+        background: #009688;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background: #00796b;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>User Registration Form</h2>
+
+    <form id="registrationForm">
+
+        <!-- Row 1 -->
+        <div class="row">
+            <div class="field">
+                <label>Full Name:</label>
+                <input type="text" required placeholder="Enter full name">
+            </div>
+
+            <div class="field">
+                <label>Email:</label>
+                <input type="email" required placeholder="example@mail.com">
+            </div>
+
+            <div class="field">
+                <label>Phone:</label>
+                <input type="tel" pattern="[0-9\-]{12}" placeholder="123-456-7890">
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row">
+            <div class="field">
+                <label>Date of Birth:</label>
+                <input type="date" required>
+            </div>
+        </div>
+
+        <!-- Country -->
+        <div class="field">
+            <label>Country:</label>
+            <input list="countries" required>
+            <datalist id="countries">
+                <option value="India">
+                <option value="USA">
+                <option value="UK">
+                <option value="Canada">
+                <option value="Australia">
+            </datalist>
+        </div>
+
+        <!-- Website -->
+        <div class="field">
+            <label>Website (Optional):</label>
+            <input type="url" placeholder="https://example.com">
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+            <label>Password:</label>
+            <input type="password" required minlength="6">
+        </div>
+
+        <!-- Skill Level -->
+        <div class="field">
+            <label>Skill Level (1–10):</label>
+            <input type="range" min="1" max="10" value="5" id="skill">
+            <span id="skillValue">5</span>
+        </div>
+
+        <!-- Favorite Color -->
+        <div class="field">
+            <label>Favorite Color:</label>
+            <input type="color">
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-box">
+            <label>Form Completion:</label>
+            <progress id="progressBar" value="0" max="100"></progress>
+            <span id="progressText">0%</span>
+        </div>
+
+        <button type="submit">Submit Registration</button>
+
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById("registrationForm");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const skill = document.getElementById("skill");
+    const skillValue = document.getElementById("skillValue");
+
+    skill.addEventListener("input", () => {
+        skillValue.textContent = skill.value;
+    });
+
+    form.addEventListener("input", () => {
+        const inputs = form.querySelectorAll("input[required]");
+        let validCount = 0;
+
+        inputs.forEach(input => {
+            if (input.checkValidity()) {
+                validCount++;
+            }
+        });
+
+        const percentage = Math.round((validCount / inputs.length) * 100);
+        progressBar.value = percentage;
+        progressText.textContent = percentage + "%";
+    });
+</script>
+
+</body>
+</html>
+
+

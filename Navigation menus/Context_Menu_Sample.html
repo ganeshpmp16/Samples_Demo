@@ -1,0 +1,75 @@
+<!--This is a sample context menu implementation in HTML -->
+<!-- Context menu means a menu that appears when right-clicking on an element -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Menu Sample</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        /* Context menu styling */
+        .context-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }cd
+
+        .context-menu ul {
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+        }
+
+        .context-menu ul li {
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+
+        .context-menu ul li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Right-click on the box below to see the context menu</h1>
+    <div id="context-area" style="width: 300px; height: 200px; background-color: #e0e0e0; display: flex; align-items: center; justify-content: center;">
+        Right-click here
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="context-menu">
+        <ul>
+            <li onclick="alert('Option 1 selected')">Option 1</li>
+            <li onclick="alert('Option 2 selected')">Option 2</li>
+            <li onclick="alert('Option 3 selected')">Option 3</li>
+        </ul>
+    </div>
+
+    <script>
+        const contextArea = document.getElementById('context-area');
+        const contextMenu = document.getElementById('context-menu');
+
+        // Show context menu on right-click
+        contextArea.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Prevent the default context menu
+            contextMenu.style.top = `${e.pageY}px`;
+            contextMenu.style.left = `${e.pageX}px`;
+            contextMenu.style.display = 'block';
+        });
+
+        // Hide context menu on click outside
+        document.addEventListener('click', () => {
+            contextMenu.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

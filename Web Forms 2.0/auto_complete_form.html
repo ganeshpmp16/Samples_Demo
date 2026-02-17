@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Autocomplete Demo</title>
+</head>
+<body>
+  <h1>Autocomplete Test Form</h1>
+  
+  <p><strong>Instructions:</strong></p>
+  <ol>
+    <li>Fill out the form below</li>
+    <li>Click "Submit"</li>
+    <li>When browser asks "Save password/info?" → Click "Save"</li>
+    <li>Refresh this page (F5)</li>
+    <li>Click in any field and you'll see autocomplete suggestions!</li>
+  </ol>
+  
+  <hr>
+
+  <!-- ✅ CRITICAL: Must have action and method -->
+  <form action="" method="post" autocomplete="on">
+    <label>
+      Full Name:
+      <input type="text" name="fullName" autocomplete="name" required>
+    </label>
+    <br><br>
+    
+    <label>
+      Email:
+      <input type="email" name="email" autocomplete="email" required>
+    </label>
+    <br><br>
+    
+    <label>
+      Address:
+      <input type="text" name="address" autocomplete="street-address" required>
+    </label>
+    <br><br>
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Allow the first submission to go through so browser can save data
+    let submissionCount = 0;
+    
+    document.querySelector('form').addEventListener('submit', function(e) {
+      submissionCount++;
+      
+      if (submissionCount > 1) {
+        // After first submission, prevent page reload
+        e.preventDefault();
+        alert('Form submitted! Refresh the page and try typing in the fields.');
+      }
+      // First submission: let it go through naturally so browser saves data
+    });
+  </script>
+</body>
+</html>

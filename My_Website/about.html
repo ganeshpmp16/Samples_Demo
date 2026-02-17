@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - My Company</title>
+    <style>
+        /* Same CSS as index.html */
+        nav {
+            background-color: #333;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- SAME NAVIGATION on every page -->
+    <nav aria-label="Main Navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>About Us</h1>
+        <p>We are a company that...</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+```
+
+### **Key Points:**
+
+1. **Copy the same `<nav>` code to EVERY page** of your website (index.html, about.html, services.html, etc.)
+2. **Place it right after the opening `<body>` tag** (before your main content)
+3. **The navigation should be consistent** across all pages
+4. **Update the href values** to match your actual file names
+
+### **Your Project Folder Structure:**
+```
+my-website/
+├── index.html      (Home page)
+├── about.html      (About page)
+├── services.html   (Services page)
+├── products.html   (Products page)
+└── contact.html    (Contact page)

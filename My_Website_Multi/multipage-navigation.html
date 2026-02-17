@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page Navigation - HTML Only</title>
+</head>
+<body>
+    <h1>Multi-Page Navigation Using Relative and Absolute Paths</h1>
+    
+    <p>Understanding the difference between absolute and relative paths is crucial for proper site navigation.</p>
+
+    <hr>
+
+    <!-- Path Types Comparison Table -->
+    <h2>Path Types Comparison</h2>
+    
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Path Type</th>
+                <th>Example</th>
+                <th>Description</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Absolute (External)</strong></td>
+                <td><code>https://www.example.com/products/index.html</code></td>
+                <td>Complete URL with protocol and domain</td>
+                <td>Linking to external websites</td>
+            </tr>
+            <tr>
+                <td><strong>Absolute (Internal)</strong></td>
+                <td><code>/about/team.html</code></td>
+                <td>Path from domain root</td>
+                <td>Root-level navigation within site</td>
+            </tr>
+            <tr>
+                <td><strong>Relative (Same Dir)</strong></td>
+                <td><code>contact.html</code></td>
+                <td>File in same directory</td>
+                <td>Pages in same folder</td>
+            </tr>
+            <tr>
+                <td><strong>Relative (Subdirectory)</strong></td>
+                <td><code>products/electronics.html</code></td>
+                <td>File in subdirectory</td>
+                <td>Navigating to child pages</td>
+            </tr>
+            <tr>
+                <td><strong>Relative (Parent Dir)</strong></td>
+                <td><code>../index.html</code></td>
+                <td>File in parent directory</td>
+                <td>Navigating up one level</td>
+            </tr>
+            <tr>
+                <td><strong>Relative (Two Levels Up)</strong></td>
+                <td><code>../../blog/latest.html</code></td>
+                <td>File two directories up</td>
+                <td>Complex nested structures</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Example Project Structure -->
+    <h2>Example Project Structure</h2>
+    
+    <pre>
+website/
+├── index.html
+├── about.html
+├── products/
+│   ├── index.html
+│   ├── electronics.html
+│   └── clothing.html
+├── blog/
+│   ├── index.html
+│   └── posts/
+│       └── latest.html
+└── images/
+    └── logo.png
+    </pre>
+
+    <hr>
+
+    <!-- Path Examples from Different Locations -->
+    <h2>Navigation Examples from Different Locations</h2>
+
+    <!-- Example 1: From Root (index.html) -->
+    <h3>Example 1: From index.html (root folder)</h3>
+    <p><strong>Current Location:</strong> website/index.html</p>
+    
+    <h4>How to navigate to other pages:</h4>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Target File</th>
+            <th>Path to Use</th>
+            <th>Explanation</th>
+        </tr>
+        <tr>
+            <td>about.html</td>
+            <td><code>about.html</code></td>
+            <td>Both files are in root, just use filename</td>
+        </tr>
+        <tr>
+            <td>products/index.html</td>
+            <td><code>products/index.html</code></td>
+            <td>Go into products folder</td>
+        </tr>
+        <tr>
+            <td>products/electronics.html</td>
+            <td><code>products/electronics.html</code></td>
+            <td>Go into products folder, then electronics.html</td>
+        </tr>
+        <tr>
+            <td>blog/posts/latest.html</td>
+            <td><code>blog/posts/latest.html</code></td>
+            <td>Go into blog, then posts, then latest.html</td>
+        </tr>
+        <tr>
+            <td>images/logo.png</td>
+            <td><code>images/logo.png</code></td>
+            <td>Go into images folder</td>
+        </tr>
+    </table>
+
+    <h4>HTML Code:</h4>
+    <pre>
+&lt;!-- In index.html --&gt;
+&lt;a href="about.html"&gt;About&lt;/a&gt;
+&lt;a href="products/index.html"&gt;Products&lt;/a&gt;
+&lt;a href="products/electronics.html"&gt;Electronics&lt;/a&gt;
+&lt;a href="blog/posts/latest.html"&gt;Latest Blog Post&lt;/a&gt;
+&lt;img src="images/logo.png" alt="Logo"&gt;
+    </pre>
+
+    <hr>
+
+    <!-- Example 2: From products/electronics.html -->
+    <h3>Example 2: From products/electronics.html</h3>
+    <p><strong>Current Location:</strong> website/products/electronics.html</p>
+    
+    <h4>How to navigate to other pages:</h4>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Target File</th>
+            <th>Path to Use</th>
+            <th>Explanation</th>
+        </tr>
+        <tr>
+            <td>index.html (homepage)</td>
+            <td><code>../index.html</code></td>
+            <td>../ means go UP one level to website/</td>
+        </tr>
+        <tr>
+            <td>about.html</td>
+            <td><code>../about.html</code></td>
+            <td>Go up to root, then about.html</td>
+        </tr>
+        <tr>
+            <td>products/index.html</td>
+            <td><code>index.html</code></td>
+            <td>In same folder, just use filename</td>
+        </tr>
+        <tr>
+            <td>products/clothing.html</td>
+            <td><code>clothing.html</code></td>
+            <td>Both in products/ folder</td>
+        </tr>
+        <tr>
+            <td>blog/index.html</td>
+            <td><code>../blog/index.html</code></td>
+            <td>Up to root (../), then into blog/</td>
+        </tr>
+        <tr>
+            <td>images/logo.png</td>
+            <td><code>../images/logo.png</code></td>
+            <td>Up to root, then into images/</td>
+        </tr>
+    </table>
+
+    <h4>HTML Code:</h4>
+    <pre>
+&lt;!-- In products/electronics.html --&gt;
+&lt;a href="../index.html"&gt;Home&lt;/a&gt;
+&lt;a href="../about.html"&gt;About&lt;/a&gt;
+&lt;a href="index.html"&gt;All Products&lt;/a&gt;
+&lt;a href="clothing.html"&gt;Clothing&lt;/a&gt;
+&lt;a href="../blog/index.html"&gt;Blog&lt;/a&gt;
+&lt;img src="../images/logo.png" alt="Logo"&gt;
+    </pre>
+
+    <hr>
+
+    <!-- Example 3: From blog/posts/latest.html -->
+    <h3>Example 3: From blog/posts/latest.html</h3>
+    <p><strong>Current Location:</strong> website/blog/posts/latest.html</p>
+    
+    <h4>How to navigate to other pages:</h4>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Target File</th>
+            <th>Path to Use</th>
+            <th>Explanation</th>
+        </tr>
+        <tr>
+            <td>index.html (homepage)</td>
+            <td><code>../../index.html</code></td>
+            <td>../../ means go UP TWO levels (posts → blog → website)</td>
+        </tr>
+        <tr>
+            <td>blog/index.html</td>
+            <td><code>../index.html</code></td>
+            <td>../ goes up one level to blog/</td>
+        </tr>
+        <tr>
+            <td>about.html</td>
+            <td><code>../../about.html</code></td>
+            <td>Up two levels to root, then about.html</td>
+        </tr>
+        <tr>
+            <td>products/electronics.html</td>
+            <td><code>../../products/electronics.html</code></td>
+            <td>Up to root (../../), into products/</td>
+        </tr>
+        <tr>
+            <td>images/logo.png</td>
+            <td><code>../../images/logo.png</code></td>
+            <td>Up two levels, then into images/</td>
+        </tr>
+    </table>
+
+    <h4>HTML Code:</h4>
+    <pre>
+&lt;!-- In blog/posts/latest.html --&gt;
+&lt;a href="../../index.html"&gt;Home&lt;/a&gt;
+&lt;a href="../index.html"&gt;Blog Home&lt;/a&gt;
+&lt;a href="../../about.html"&gt;About&lt;/a&gt;
+&lt;a href="../../products/electronics.html"&gt;Electronics&lt;/a&gt;
+&lt;img src="../../images/logo.png" alt="Logo"&gt;
+    </pre>
+
+    <hr>
+
+    <!-- Understanding Parent Directory -->
+    <h2>Understanding .. (Parent Directory)</h2>
+    
+    <h3>Key Symbols:</h3>
+    <ul>
+        <li><strong>.</strong> (single dot) = Current directory</li>
+        <li><strong>..</strong> (two dots) = Parent directory (go up one level)</li>
+        <li><strong>../..</strong> = Go up two levels</li>
+        <li><strong>No prefix</strong> = Same directory</li>
+        <li><strong>/</strong> (forward slash at start) = Root directory (absolute path)</li>
+    </ul>
+
+    <h3>Visual Example:</h3>
+    <pre>
+If you are in: website/products/electronics.html
+
+../           goes to: website/products/  (up one level)
+../..         goes to: website/           (up two levels)
+index.html    goes to: website/products/index.html (same folder)
+    </pre>
+
+    <hr>
+
+    <!-- Absolute vs Relative Paths -->
+    <h2>Absolute vs Relative Paths - Detailed Comparison</h2>
+
+    <h3>Absolute Paths (External)</h3>
+    <p>Complete URL including protocol (http:// or https://) and domain name.</p>
+    <pre>
+&lt;!-- Link to external website --&gt;
+&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;
+&lt;a href="https://www.example.com/products/index.html"&gt;Example Products&lt;/a&gt;
+    </pre>
+    
+    <p><strong>Use When:</strong> Linking to websites outside your own domain.</p>
+
+    <h3>Absolute Paths (Internal - from root)</h3>
+    <p>Start with / which means "from the root of the website"</p>
+    <pre>
+&lt;!-- These work from ANY page on your site --&gt;
+&lt;a href="/index.html"&gt;Home&lt;/a&gt;
+&lt;a href="/about.html"&gt;About&lt;/a&gt;
+&lt;a href="/products/electronics.html"&gt;Electronics&lt;/a&gt;
+&lt;a href="/images/logo.png"&gt;Logo&lt;/a&gt;
+    </pre>
+    
+    <p><strong>Use When:</strong> You want the same link to work from any page on your site.</p>
+
+    <h3>Relative Paths</h3>
+    <p>Paths relative to the current file's location.</p>
+    <pre>
+&lt;!-- From products/electronics.html --&gt;
+&lt;a href="clothing.html"&gt;Clothing&lt;/a&gt;              &lt;!-- Same folder --&gt;
+&lt;a href="../about.html"&gt;About&lt;/a&gt;                &lt;!-- Parent folder --&gt;
+&lt;a href="../blog/index.html"&gt;Blog&lt;/a&gt;             &lt;!-- Sibling folder --&gt;
+    </pre>
+    
+    <p><strong>Use When:</strong> Navigating within your website. Makes site portable (easy to move between servers).</p>
+
+    <hr>
+
+    <!-- Common Mistakes -->
+    <h2>Common Mistakes to Avoid</h2>
+
+    <h3>Mistake 1: Using Backslashes Instead of Forward Slashes</h3>
+    <pre>
+<strong>❌ WRONG:</strong>
+&lt;a href="products\electronics.html"&gt;Electronics&lt;/a&gt;
+
+<strong>✅ CORRECT:</strong>
+&lt;a href="products/electronics.html"&gt;Electronics&lt;/a&gt;
+    </pre>
+    <p><strong>Remember:</strong> Always use forward slashes (/) in web paths, not backslashes (\)</p>
+
+    <h3>Mistake 2: Forgetting ../ to Go Up a Level</h3>
+    <pre>
+From: products/electronics.html
+Want to reach: index.html (in root)
+
+<strong>❌ WRONG:</strong>
+&lt;a href="index.html"&gt;Home&lt;/a&gt;
+(This looks for products/index.html, not website/index.html)
+
+<strong>✅ CORRECT:</strong>
+&lt;a href="../index.html"&gt;Home&lt;/a&gt;
+(The ../ goes up to the root folder first)
+    </pre>
+
+    <h3>Mistake 3: Using Too Many ../</h3>
+    <pre>
+From: products/electronics.html
+Want to reach: about.html (in root)
+
+<strong>❌ WRONG:</strong>
+&lt;a href="../../about.html"&gt;About&lt;/a&gt;
+(Goes up TWO levels, which is too far)
+
+<strong>✅ CORRECT:</strong>
+&lt;a href="../about.html"&gt;About&lt;/a&gt;
+(Goes up ONE level to reach root)
+    </pre>
+
+    <h3>Mistake 4: Mixing Path Styles</h3>
+    <pre>
+<strong>❌ CONFUSING:</strong>
+&lt;a href="/products/../about.html"&gt;About&lt;/a&gt;
+
+<strong>✅ BETTER:</strong>
+&lt;a href="/about.html"&gt;About&lt;/a&gt;
+    </pre>
+
+    <hr>
+
+    <!-- Best Practices -->
+    <h2>Best Practices</h2>
+
+    <ol>
+        <li><strong>Use relative paths within your site</strong> - Makes your site portable (easy to move between servers or folders)</li>
+        <li><strong>Use absolute URLs for external links</strong> - Always include https:// when linking to other websites</li>
+        <li><strong>Test all links</strong> - Click every link to make sure it works</li>
+        <li><strong>Keep folder structure simple</strong> - Avoid going too deep (3-4 levels maximum)</li>
+        <li><strong>Use forward slashes</strong> - Never use backslashes (\) in web paths</li>
+        <li><strong>Be consistent</strong> - Choose one style (relative or absolute) and stick with it</li>
+    </ol>
+
+    <hr>
+
+    <!-- Quick Reference Guide -->
+    <h2>Quick Reference Guide</h2>
+
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>You Want To...</th>
+            <th>Use This Path Type</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>Link to a file in the same folder</td>
+            <td>Just the filename</td>
+            <td><code>about.html</code></td>
+        </tr>
+        <tr>
+            <td>Link to a file in a subfolder</td>
+            <td>foldername/filename</td>
+            <td><code>products/index.html</code></td>
+        </tr>
+        <tr>
+            <td>Link to a file in the parent folder</td>
+            <td>../filename</td>
+            <td><code>../index.html</code></td>
+        </tr>
+        <tr>
+            <td>Link to a file two levels up</td>
+            <td>../../filename</td>
+            <td><code>../../index.html</code></td>
+        </tr>
+        <tr>
+            <td>Link to a file in a sibling folder</td>
+            <td>../foldername/filename</td>
+            <td><code>../blog/index.html</code></td>
+        </tr>
+        <tr>
+            <td>Link from root (works everywhere)</td>
+            <td>/path/to/file</td>
+            <td><code>/products/electronics.html</code></td>
+        </tr>
+        <tr>
+            <td>Link to external website</td>
+            <td>https://domain.com</td>
+            <td><code>https://www.google.com</code></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- Practice Exercise -->
+    <h2>Practice Exercise</h2>
+
+    <p>Given this structure:</p>
+    <pre>
+mysite/
+├── index.html
+├── contact.html
+├── pages/
+│   ├── about.html
+│   └── services.html
+└── assets/
+    └── images/
+        └── banner.jpg
+    </pre>
+
+    <h3>Questions:</h3>
+    <ol>
+        <li>You are in <strong>index.html</strong>. How do you link to about.html?
+            <br><strong>Answer:</strong> <code>&lt;a href="pages/about.html"&gt;About&lt;/a&gt;</code>
+        </li>
+        <br>
+        <li>You are in <strong>pages/about.html</strong>. How do you link to index.html?
+            <br><strong>Answer:</strong> <code>&lt;a href="../index.html"&gt;Home&lt;/a&gt;</code>
+        </li>
+        <br>
+        <li>You are in <strong>pages/services.html</strong>. How do you link to banner.jpg?
+            <br><strong>Answer:</strong> <code>&lt;img src="../assets/images/banner.jpg" alt="Banner"&gt;</code>
+        </li>
+        <br>
+        <li>You are in <strong>pages/about.html</strong>. How do you link to services.html?
+            <br><strong>Answer:</strong> <code>&lt;a href="services.html"&gt;Services&lt;/a&gt;</code>
+        </li>
+        <br>
+        <li>You want a link that works from ANY page to contact.html. What do you use?
+            <br><strong>Answer:</strong> <code>&lt;a href="/contact.html"&gt;Contact&lt;/a&gt;</code> (absolute path from root)
+        </li>
+    </ol>
+
+    <hr>
+
+    <p><a href="#top">Back to Top</a></p>
+
+    <hr>
+
+    <p><strong>Summary:</strong> Understanding paths is essential for building multi-page websites. Start with simple structures and practice with relative paths. Remember: <code>../</code> goes up one level, and forward slashes (<code>/</code>) separate folders!</p>
+
+</body>
+</html>

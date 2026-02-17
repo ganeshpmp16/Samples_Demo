@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Navigation</title>
+    <style>
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a.active {
+            background-color: #028090;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click Navigation Links to Change Color</h1>
+
+    <nav>
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Services</a>
+        <a href="#" class="nav-link">Contact</a>
+    </nav>
+
+    <script>
+        // Get all links
+        const links = document.querySelectorAll('.nav-link');
+
+        // Add click event to each link
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active from all
+                links.forEach(l => l.classList.remove('active'));
+                
+                // Add active to clicked link
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

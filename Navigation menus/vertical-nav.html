@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vertical Navigation Menu</title>
+    <style>
+        /* Basic page layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        /* Vertical Navigation Bar */
+        nav {
+            width: 200px;
+            background-color: #333;
+            min-height: 100vh; /* Full height of screen */
+        }
+
+        /* Navigation Links */
+        nav a {
+            display: block;        /* Each link on its own line */
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+        }
+
+        /* Hover Effect */
+        nav a:hover {
+            background-color: #555;
+        }
+
+        /* Active Link */
+        nav a.active {
+            background-color: #028090;
+        }
+
+        /* Main Content Area */
+        .content {
+            padding: 20px;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Vertical Navigation Menu -->
+    <nav>
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Services</a>
+        <a href="#" class="nav-link">Products</a>
+        <a href="#" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to Home Page</h1>
+        <p>Click the navigation links on the left to change color!</p>
+    </div>
+
+    <!-- JavaScript for color change on click -->
+    <script>
+        const links = document.querySelectorAll('.nav-link');
+
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Remove active from all links
+                links.forEach(l => l.classList.remove('active'));
+
+                // Add active to clicked link
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
